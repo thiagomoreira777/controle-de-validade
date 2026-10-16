@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Validade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="topo">
+
+        <div class="logo">
+            <div class="icone-logo">✓</div>
+
+            <div>
+                <h1>Controle de Validade</h1>
+                <p>Gestão de produtos</p>
+            </div>
+        </div>
+
+        <div class="pesquisa">
+            <input
+                type="search"
+                id="pesquisa-produto"
+                placeholder="Pesquisar produto..."
+                aria-label="Pesquisar produto"
+            >
+        </div>
+
+    </header>
+
+    <div class="layout">
+
+        <!-- MENU LATERAL -->
+        <aside class="menu">
+            <nav>
+                <a href="#" class="menu-item ativo">
+                    🏠 <span>Dashboard</span>
+                </a>
+
+                <a href="#lista-produtos" class="menu-item">
+                    📦 <span>Produtos</span>
+                </a>
+
+                <a href="#formulario-produto" class="menu-item">
+                    ➕ <span>Adicionar Produto</span>
+                </a>
+
+                <a href="#lista-produtos" class="menu-item">
+                    📊 <span>Relatórios</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="conteudo">
+
+            <section class="titulo-pagina">
+                <h2>Dashboard</h2>
+                <p>Acompanhe seus produtos e suas datas de validade.</p>
+            </section>
+
+            <!-- RESUMO -->
+            <section class="dashboard">
+
+                <div class="card">
+                    <span class="icone-card">📦</span>
+                    <div>
+                        <h2 id="total-produtos">2</h2>
+                        <p>Total de produtos</p>
+                    </div>
+                </div>
+
+                <div class="card valido">
+                    <span class="icone-card">✓</span>
+                    <div>
+                        <h2 id="total-validos">1</h2>
+                        <p>Produtos válidos</p>
+                    </div>
+                </div>
+
+                <div class="card proximo">
+                    <span class="icone-card">⚠</span>
+                    <div>
+                        <h2 id="total-proximos">1</h2>
+                        <p>Próximos do vencimento</p>
+                    </div>
+                </div>
+
+                <div class="card vencido">
+                    <span class="icone-card">!</span>
+                    <div>
+                        <h2 id="total-vencidos">0</h2>
+                        <p>Produtos vencidos</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- FORMULÁRIO DE CADASTRO -->
+            <section class="formulario-produto" id="formulario-produto" hidden>
+
+                <h2>Cadastrar novo produto</h2>
+
+                <form id="form-produto">
+
+                    <div class="campos-formulario">
+
+                        <div class="campo">
+                            <label for="nome">Nome do produto</label>
+                            <input
+                                type="text"
+                                id="nome"
+                                maxlength="100"
+                                required
+                                placeholder="Ex.: Leite Integral"
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="categoria">Categoria</label>
+                            <select id="categoria" required>
+                                <option value="">Selecione</option>
+                                <option value="Laticínios">Laticínios</option>
+                                <option value="Alimentos">Alimentos</option>
+                                <option value="Bebidas">Bebidas</option>
+                                <option value="Higiene">Higiene</option>
+                                <option value="Limpeza">Limpeza</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
+                            <label for="quantidade">Quantidade</label>
+                            <input
+                                type="number"
+                                id="quantidade"
+                                min="1"
+                                step="1"
+                                required
+                                placeholder="Ex.: 20"
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="validade">Data de validade</label>
+                            <input type="date" id="validade" required>
+                        </div>
+
+                    </div>
+
+                    <div class="acoes-formulario">
+                        <button type="submit" class="botao-adicionar">
+                            Cadastrar produto
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelar-cadastro"
+                            class="botao-cancelar"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+
+            <!-- LISTA DE PRODUTOS -->
+            <section class="produtos" id="lista-produtos">
+
+                <div class="cabecalho-produtos">
+                    <div>
+                        <h2>Produtos cadastrados</h2>
+                        <p>Visualize os produtos registrados no sistema.</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="botao-adicionar"
+                        id="abrir-formulario"
+                    >
+                        + Adicionar produto
+                    </button>
+                </div>
+
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Quantidade</th>
+                                <th>Validade</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="corpo-tabela">
+
+                            <tr>
+                                <td><strong>Leite Integral</strong></td>
+                                <td>Laticínios</td>
+                                <td>20</td>
+                                <td>15/10/2026</td>
+                                <td>
+                                    <span class="status proximo-status">
+                                        Próximo
+                                    </span>
+                                </td>
+                                <td>—</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Arroz 5kg</strong></td>
+                                <td>Alimentos</td>
+                                <td>35</td>
+                                <td>20/05/2027</td>
+                                <td>
+                                    <span class="status valido-status">
+                                        Válido
+                                    </span>
+                                </td>
+                                <td>—</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
